@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Mini Assingment 3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Oswald');
+        * {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+        }
+        
+        button {
+            width: 250px;
+            height: 70px;
+            font-size: 30pt;
+            cursor: pointer;
+            background-color: pink;
+        }
+        
+        input {
+            width: 755px;
+            height: 70px;
+            font-size: 30pt;
+            padding-left: 20px;
+        }
+        
+        #info {
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .category {
+            width: 10%;
+            margin-top: 20px;
+            background-color: lavenderblush;
+        }
+        
+        .current-Click {
+            background-color: pink;
+        }
+        
+        #list {
+            width: 100%;
+            margin-top: 100px;
+        }
+        
+        .list-item {
+            width: 50%;
+            height: 100px;
+            background-color: pink;
+            font-size: 50px;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        
+        .dr
+    </style>
+</head>
+
+<body>
+    <div id="info">
+        <input type="text" id="item" placeholder="Enter Item Here" />
+        <button id="store">Store Item</button>
+        <br>
+        <button class="category current-Click" id="drink">Drinks</button>
+        <button class="category" id="meat">Meats</button>
+        <button class="category" id="vegetable">Vegetables</button>
+        <button class="category" id="fruit">Fruits</button>
+    </div>
+
+    <div id="list">
+
+
+    </div>
+
+    <script>
+        var dArr = [];
+        var mArr = [];
+        var vArr = [];
+        var fArr = [];
+
+        var currentClick = 1;
+
+        var storeBut = document.getElementById("store");
+        var drinkBut = document.getElementById("drink");
+        var meatBut = document.getElementById("meat");
+        var vegBut = document.getElementById("vegetable");
+        var fruitBut = document.getElementById("fruit");
+
+        var item = document.getElementById("item");
+        var list = document.getElementById("list");
+
+
+        // CATEGORYS 
+
+        drinkBut.addEventListener("click", function() {
+            drinkBut.classList = "category";
+            meatBut.classList = "category";
+            vegBut.classList = "category";
+            fruitBut.classList = "category";
+            drinkBut.className += " current-Click";
+            currentClick = 1;
+
+            list.innerHTML = "";
+
+            for (var i = 0; i < dArr.length; i++) {
+                var newItem = document.createElement("div");
+                newItem.className = "list-item";
+                newItem.innerHTML = dArr[i];
+                list.appendChild(newItem);
+            }
+        });
+
+
+        meatBut.addEventListener("click", function() {
+            drinkBut.classList = "category";
+            meatBut.classList = "category";
+            vegBut.classList = "category";
+            fruitBut.classList = "category";
+            meatBut.className += " current-Click";
+            currentClick = 2;
+
+            list.innerHTML = "";
+
+            for (var i = 0; i < mArr.length; i++) {
+                var newItem = document.createElement("div");
+                newItem.className = "list-item";
+                newItem.innerHTML = mArr[i];
+                list.appendChild(newItem);
+            }
+        });
+
+        vegBut.addEventListener("click", function() {
+            drinkBut.classList = "category";
+            meatBut.classList = "category";
+            vegBut.classList = "category";
+            fruitBut.classList = "category";
+            vegBut.className += " current-Click";
+            currentClick = 3;
+
+            list.innerHTML = "";
+
+            for (var i = 0; i < dArr.length; i++) {
+                var newItem = document.createElement("div");
+                newItem.className = "list-item";
+                newItem.innerHTML = vArr[i];
+                list.appendChild(newItem);
+            }
+        });
+
+
+        fruitBut.addEventListener("click", function() {
+            drinkBut.classList = "category";
+            meatBut.classList = "category";
+            vegBut.classList = "category";
+            fruitBut.classList = "category";
+            fruitBut.className += " current-Click";
+            currentClick = 4;
+
+            list.innerHTML = "";
+
+            for (var i = 0; i < dArr.length; i++) {
+                var newItem = document.createElement("div");
+                newItem.className = "list-item";
+                newItem.innerHTML = fArr[i];
+                list.appendChild(newItem);
+            }
+        });
+
+        //STORE button is clicked 
+
+        storeBut.addEventListener("click", function() {
+            //if you never entered anything
+            if (item.value == "") {
+                alert("There is no item to be stored... try again");
+            } else {
+                //creating a new div for the lists
+                var newItem = document.createElement("div");
+                newItem.className = "list-item";
+                newItem.innerHTML = item.value;
+                list.appendChild(newItem);
+
+                if (currentClick == 1) {
+                    dArr.push(item.value);
+                    console.log(dArr);
+                } else if (currentClick == 2) {
+                    mArr.push(item.value);
+                    console.log(mArr);
+                } else if (currentClick == 3) {
+                    vArr.push(item.value);
+                    console.log(vArr);
+                } else if (currentClick == 4) {
+                    fArr.push(item.value);
+                    console.log(fArr);
+                }
+
+                item.value = "";
+                item.placeholder = "Type A Item Here";
+            }
+        });
+
+        //if you press the enter key from the type box
+        item.addEventListener("keyup", function(ev) {
+            if (ev.keyCode == 13) {
+                //if you never entered anything
+                if (item.value == "") {
+                    alert("There is no item to be stored... try again");
+                } else {
+                    //creating a new div for the lists
+                    var newItem = document.createElement("div");
+                    newItem.className = "list-item";
+                    newItem.innerHTML = item.value;
+                    list.appendChild(newItem);
+
+                    if (currentClick == 1) {
+                        dArr.push(item.value);
+                        console.log(dArr);
+                    } else if (currentClick == 2) {
+                        mArr.push(item.value);
+                        console.log(mArr);
+                    } else if (currentClick == 3) {
+                        vArr.push(item.value);
+                        console.log(vArr);
+                    } else if (currentClick == 4) {
+                        fArr.push(item.value);
+                        console.log(fArr);
+                    }
+
+                    item.value = "";
+                    item.placeholder = "Type A Item Here";
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
